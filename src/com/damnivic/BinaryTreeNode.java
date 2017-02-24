@@ -1,0 +1,8 @@
+package com.damnivic;
+
+public class BinaryTreeNode {
+
+	public int value;
+    public BinaryTreeNode leftNode;
+    public BinaryTreeNode rightNode;
+}
