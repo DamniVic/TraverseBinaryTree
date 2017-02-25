@@ -5,7 +5,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Solution {
-
+/**
+ * 整个求解的方法采用一个递归的思想，
+ * 我们只需要在当前知晓的几种遍历结果中确定当前二叉树的根节点并且分离出根节点的左子树和右子树即可。
+ * 
+ * 譬如，一二叉树，前序遍历12743568，中序遍历47215386，后序遍历47258631，
+ * 
+ * 假如知道前序中序了，根据前序我们知道当前二叉树的根节点的值为1，然后将1应用到中序里面，我们就知道根节点的左子树的中序遍历结果为472，
+ * 根节点的右子树的中序遍历结果为5386，然后这里我们知道左子树上面有三个节点，所以应用到前序遍历中去，我们得知左子树的前序遍历为274，
+ * 右子树的前序遍历为3568。
+ * 
+ * 已知的条件，二叉树前序遍历为12743568，中序遍历为47215386
+ * 整理一下，到这里我们就可以，得到三个结论：
+ * 1.当前二叉树的根节点的值为1
+ * 2.当前二叉树的左子树的前序遍历为274，中序遍历为472（这里跟题目中已知的条件一样了，所以可以形成递归）
+ * 3.当前二叉树的右子树的前序遍历为3568，中序遍历为5386（这里跟题目中已知的条件一样了，所以可以形成递归）
+ */
+	
 	//知道前序中序求二叉树
 	public static BinaryTreeNode constructCorePI(int[] preorder, int[] inorder) throws Exception {
         if (preorder == null || inorder == null) {
@@ -17,12 +33,13 @@ public class Solution {
         BinaryTreeNode root = new BinaryTreeNode();
         for (int i = 0; i < inorder.length; i++) {
             if (inorder[i] == preorder[0]) {
-                root.value = inorder[i];
+                root.value = inorder[i];//确定当前二叉树的根节点的值并找到左子树和右子树的遍历
                 System.out.print(root.value+",");
                 root.leftNode = constructCorePI(Arrays.copyOfRange(preorder, 1, i + 1),
-                        Arrays.copyOfRange(inorder, 0, i));
+                        Arrays.copyOfRange(inorder, 0, i));//根据中序遍历可以确定左子树有多少个节点并从原遍历中分离出左子树的前序和中序遍历
                 root.rightNode = constructCorePI(Arrays.copyOfRange(preorder, i + 1, preorder.length),
-                        Arrays.copyOfRange(inorder, i + 1, inorder.length));
+                        Arrays.copyOfRange(inorder, i + 1, inorder.length));//根据中序遍历可以确定右子树有多少个节点并从原遍历分离出右子树的前序和中序遍历
+                break;
             }
         }
         return root;
@@ -57,6 +74,7 @@ public class Solution {
 //					root2.rightNode=constructCorePL(Arrays.copyOfRange(preorder, 1, preorder.length),Arrays.copyOfRange(lastorder, 0, lastorder.length-1));
 //					list.add(root2);
 				}
+				break;
 			}
 		}
 		}

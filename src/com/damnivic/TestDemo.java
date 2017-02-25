@@ -6,10 +6,12 @@ import com.damnivic.Solution;
 public class TestDemo {
 	public static void main(String args[])
 	{
-		int[] preorder={1,2,7,4,3,5,6,8};
-		int[] inorder={4,7,2,1,5,3,8,6};
-		int[] lastorder={4,7,2,5,8,6,3,1};
+		int[] preorder={1,2,7,4,3,5,6,8};//二叉树的前序遍历
+		int[] inorder={4,7,2,1,5,3,8,6};//二叉树的中序遍历
+		int[] lastorder={4,7,2,5,8,6,3,1};//二叉树的后序遍历
 		BinaryTreeNode root = null;
+		
+		//知道前序中序后求二叉树并用三种遍历打印出来
 		try {
 			root=Solution.constructCorePI(preorder,inorder);
 		} catch (Exception e) {
@@ -24,6 +26,8 @@ public class TestDemo {
 		System.out.println();
 		printBTLast(root);
 		System.out.println();
+		
+		//知道中序后序后求二叉树并用三种遍历打印出来
 		try {
 			root=Solution.constructCoreIL(inorder,lastorder);
 		} catch (Exception e) {
@@ -38,6 +42,8 @@ public class TestDemo {
 		System.out.println();
 		printBTLast(root);
 		System.out.println();
+		
+		//知道前序后序求二叉树并用三种遍历打印出来
 		try {
 			root=Solution.constructCorePL(preorder,lastorder);
 		} catch (Exception e) {
@@ -58,6 +64,7 @@ public class TestDemo {
 //		jf.show();
 	}
 	
+	//前序遍历打印二叉树
 	private static void printBTPre(BinaryTreeNode root)
 	{
 		if(root.value!=0)
@@ -68,6 +75,7 @@ public class TestDemo {
 			printBTPre(root.rightNode);
 	}
 	
+	//中序遍历打印二叉树
 	private static void printBTIn(BinaryTreeNode root)
 	{
 		if(root.leftNode!=null)
@@ -78,6 +86,7 @@ public class TestDemo {
 			printBTIn(root.rightNode);
 	}
 	
+	//后序遍历打印二叉树
 	private static void printBTLast(BinaryTreeNode root)
 	{
 		if(root.leftNode!=null)
