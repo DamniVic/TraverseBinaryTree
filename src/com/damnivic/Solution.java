@@ -45,7 +45,7 @@ public class Solution {
         return root;
     }
 	
-	private static ArrayList<BinaryTreeNode> list=new ArrayList<BinaryTreeNode>();
+//	private static ArrayList<BinaryTreeNode> list=new ArrayList<BinaryTreeNode>();
 	//知道前序后序求二叉树
 	public static BinaryTreeNode constructCorePL(int[] preorder,int[] lastorder) throws Exception{
 		if(preorder==null||lastorder==null)
